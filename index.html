@@ -45,13 +45,20 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
     display: flex;
-    align-items: flex-end;
+  }
+
+  /* ── CARD FRAME (clips content, holds gradient/grain on mobile) ── */
+  .card-frame {
+    position: absolute;
+    inset: 0;
     overflow: hidden;
+    display: flex;
+    align-items: flex-end;
     background: var(--dark);
   }
 
   /* ── GRADIENT + GRAIN ── */
-  .card::after {
+  .card-frame::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -63,7 +70,7 @@
     pointer-events: none;
     z-index: 2;
   }
-  .card::before {
+  .card-frame::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -783,29 +790,40 @@ PROJECTS.forEach((p, i) => {
     : '';
 
   card.innerHTML = `
-    ${carouselHTML}
+    <div class="card-frame">
+      ${carouselHTML}
 
-    ${hasVid ? `
-    <button class="mute-btn" data-id="${p.id}">
-      <svg class="icon-muted" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8FF00" stroke-width="2">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-        <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-      </svg>
-      <svg class="icon-unmuted" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" style="display:none">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
-      </svg>
-    </button>
-    <div class="play-pause-overlay">
-      <button class="play-pause-btn" data-id="${p.id}">
-        <svg class="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="var(--lime)" stroke="none">
-          <rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>
+      ${hasVid ? `
+      <button class="mute-btn" data-id="${p.id}">
+        <svg class="icon-muted" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8FF00" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
         </svg>
-        <svg class="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="var(--lime)" stroke="none" style="display:none;margin-left:3px">
-          <polygon points="5 3 19 12 5 21 5 3"/>
+        <svg class="icon-unmuted" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" style="display:none">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
         </svg>
       </button>
-    </div>` : ''}
+      <div class="play-pause-overlay">
+        <button class="play-pause-btn" data-id="${p.id}">
+          <svg class="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="var(--lime)" stroke="none">
+            <rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>
+          </svg>
+          <svg class="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="var(--lime)" stroke="none" style="display:none;margin-left:3px">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </button>
+      </div>` : ''}
+
+      <div class="card-bottom">
+        <div class="caption">
+          <div class="caption-handle">@charlanne.work</div>
+          <div class="caption-title">${p.title}</div>
+          ${tagsHTML}
+          <div class="caption-hook">${p.caption}</div>
+        </div>
+      </div>
+    </div>
 
     <div class="actions">
       ${p.url ? `
@@ -837,15 +855,6 @@ PROJECTS.forEach((p, i) => {
         </div>
         <span class="action-count comment-count" data-id="${p.id}">0</span>
       </button>
-    </div>
-
-    <div class="card-bottom">
-      <div class="caption">
-        <div class="caption-handle">@charlanne.work</div>
-        <div class="caption-title">${p.title}</div>
-        ${tagsHTML}
-        <div class="caption-hook">${p.caption}</div>
-      </div>
     </div>
   `;
 
