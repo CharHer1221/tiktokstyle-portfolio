@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Add a TikTok-style 3-column desktop layout (left sidebar, 390px center feed, right actions) and a mobile hamburger menu, all within `index.html` using a `@media (min-width: 900px)` CSS block.
+**Goal:** Add a TikTok-style 3-column desktop layout (left sidebar, 390px center feed, right actions), a mobile hamburger menu, and a desktop right-side comments panel — all within `index.html` using a `@media (min-width: 900px)` CSS block.
 
 **Architecture:** A new `<aside id="desktop-sidebar">` is added to the HTML body. A `.card-frame` wrapper is added to the JS card template to enable per-card content clipping (required for rounded corners + actions outside card). Desktop layout uses body flexbox; mobile sidebar uses a slide-in panel triggered by a hamburger button.
 
@@ -673,7 +673,86 @@ git commit -m "feat: desktop polish — dots, scroll hint, carousel dots fix"
 
 ---
 
-## Task 6: Push to GitHub + deploy to Vercel
+## Task 6: Desktop right-side comments panel
+
+**File:** `index.html` — CSS + JS
+
+On desktop, clicking the comment button opens a panel that slides in from the **right** (like TikTok desktop). Mobile bottom-sheet behaviour is unchanged.
+
+**Step 1: Add desktop comment drawer CSS** inside the `@media (min-width: 900px)` block:
+
+```css
+@media (min-width: 900px) {
+  /* Comment drawer becomes a right-side panel */
+  #comment-drawer {
+    top: 0;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    width: 380px;
+    height: 100vh;
+    border-top: none;
+    border-left: 1px solid rgba(200,255,0,0.15);
+    border-radius: 0;
+    transform: translateX(100%);
+  }
+  #comment-drawer.open {
+    transform: translateX(0);
+  }
+
+  /* Hide the drag handle on desktop */
+  .drawer-handle { display: none; }
+
+  /* Lighter backdrop on desktop (doesn't cover the video heavily) */
+  #backdrop {
+    background: rgba(0,0,0,0.3);
+  }
+}
+```
+
+**Step 2: Add comment count to the drawer header**
+
+Currently `drawer-header` shows just `COMMENTS`. Update it to show the count for the active card.
+
+Find the `openComments(id)` function (or wherever `comment-drawer` gets the `open` class). After setting `state.activeCommentCard = id`, update the header:
+
+```js
+// Inside the function that opens the comment drawer:
+const drawerHeader = document.querySelector('.drawer-header span');
+const count = state.commentsByCard[id] ? state.commentsByCard[id].length : 0;
+drawerHeader.textContent = `COMMENTS  ${count}`;
+```
+
+Also update `renderComments(id)` to refresh the header count after a comment is added/deleted:
+```js
+const drawerHeader = document.querySelector('.drawer-header span');
+if (drawerHeader) {
+  drawerHeader.textContent = `COMMENTS  ${state.commentsByCard[id].length}`;
+}
+```
+
+**Step 3: Verify on desktop**
+
+- Click comment button → panel slides in from right
+- Panel sits to the right of the action buttons
+- Video is still visible on the left
+- Closing (✕ button or backdrop) slides panel back out
+- Count in header updates when comments are added/deleted
+
+**Step 4: Verify on mobile**
+
+- Comment drawer still slides up from bottom
+- Behaviour unchanged
+
+**Step 5: Commit**
+```bash
+git add index.html
+git commit -m "feat: desktop right-side comments panel"
+```
+
+---
+
+## Task 7: Push to GitHub + deploy to Vercel
 
 **Step 1: Push all commits**
 ```bash
