@@ -611,6 +611,235 @@
     font-family: 'DM Mono', monospace; font-size: 11px;
     color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
   }
+
+  /* ── HAMBURGER BUTTON ── */
+  #hamburger-btn {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 50;
+    width: 38px;
+    height: 38px;
+    background: rgba(8,8,8,0.65);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--white);
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  #hamburger-btn:hover { background: rgba(200,255,0,0.1); border-color: var(--lime); }
+
+  /* ── MOBILE SIDEBAR BACKDROP ── */
+  #mobile-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    display: block;
+  }
+  #mobile-sidebar-backdrop.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── SIDEBAR (shared mobile slide-in + desktop fixed) ── */
+  #desktop-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background: var(--black);
+    border-right: 1px solid rgba(255,255,255,0.07);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  #desktop-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* ── SIDEBAR CONTENT STYLES ── */
+  .sidebar-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--lime);
+    margin-bottom: 12px;
+  }
+  .sidebar-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    text-transform: lowercase;
+  }
+  .sidebar-tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--lime);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.85;
+  }
+  .sidebar-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 20px 0;
+  }
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(240,240,240,0.6);
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s, background 0.2s;
+  }
+  .sidebar-link:hover {
+    color: var(--lime);
+    background: rgba(200,255,0,0.07);
+  }
+  .sidebar-link svg { flex-shrink: 0; opacity: 0.7; }
+  .sidebar-link:hover svg { opacity: 1; }
+
+  /* ════════════════════════════════════════════
+     DESKTOP LAYOUT  (≥ 900px)
+     ════════════════════════════════════════════ */
+  @media (min-width: 900px) {
+
+    /* ── PAGE LAYOUT ── */
+    body {
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+    }
+
+    /* ── LEFT SIDEBAR ── */
+    #desktop-sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 240px;
+      flex-shrink: 0;
+      height: 100vh;
+      padding: 32px 24px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+      background: var(--black);
+      overflow-y: auto;
+      transform: none;
+    }
+
+    /* ── FEED (center column) ── */
+    #feed {
+      margin-left: 240px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    /* ── CARD (desktop: flex row, transparent shell) ── */
+    .card {
+      width: auto;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: transparent;
+      overflow: visible;
+      flex-shrink: 0;
+    }
+
+    /* ── CARD FRAME (the visible rounded card) ── */
+    .card-frame {
+      position: relative;
+      inset: auto;
+      width: 390px;
+      height: calc(100vh - 48px);
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* ── CAROUSEL SLIDES: fixed width on desktop ── */
+    .carousel-slide {
+      flex: 0 0 390px;
+      width: 390px;
+    }
+
+    /* Fill card frame with media on desktop */
+    .carousel-slide-image .card-media,
+    .carousel-slide-video .card-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── ACTIONS (outside card, to the right) ── */
+    .actions {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      z-index: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 72px;
+    }
+
+    /* ── HIDE MOBILE-ONLY UI ── */
+    #hamburger-btn,
+    #mobile-sidebar-backdrop { display: none; }
+
+    /* ── PROGRESS DOTS ── */
+    #dots { display: none; }
+
+    /* ── SCROLL HINT ── */
+    #scroll-hint { display: none; }
+
+    /* ── CAROUSEL DOTS position for 390px card ── */
+    .carousel-dots {
+      top: min(calc(50% + min(195px, 50vh) + 10px), calc(100% - 80px));
+    }
+
+    /* ── CARD BOTTOM text padding ── */
+    .card-bottom {
+      padding: 0 16px 36px 16px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1162,6 +1391,24 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
 }
+
+// ── HAMBURGER MENU ──
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const mobileSidebarBackdrop = document.getElementById('mobile-sidebar-backdrop');
+const desktopSidebar = document.getElementById('desktop-sidebar');
+
+function openSidebar() {
+  desktopSidebar.classList.add('open');
+  mobileSidebarBackdrop.classList.add('open');
+}
+
+function closeSidebar() {
+  desktopSidebar.classList.remove('open');
+  mobileSidebarBackdrop.classList.remove('open');
+}
+
+if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+if (mobileSidebarBackdrop) mobileSidebarBackdrop.addEventListener('click', closeSidebar);
 </script>
 </body>
 </html>
