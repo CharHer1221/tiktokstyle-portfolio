@@ -25,6 +25,10 @@
     --muted: #888888;
     --lime: #4d6b00;
   }
+  /* Card overlay text always stays light — it sits on dark media/gradient */
+  body.light .caption-title  { color: #f0f0f0; }
+  body.light .caption-handle { color: #C8FF00; }
+  body.light .caption-tag:first-child { color: #C8FF00; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -882,6 +886,13 @@
 
     /* ── SHOW DESKTOP-ONLY UI ── */
     #theme-btn { display: flex; }
+
+    /* ── MUTE: move out of card, stack above theme toggle ── */
+    .mute-btn {
+      position: fixed;
+      top: 14px;
+      right: 16px;
+    }
 
     /* ── PROGRESS DOTS ── */
     #dots { display: none; }
