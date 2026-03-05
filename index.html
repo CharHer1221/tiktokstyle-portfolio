@@ -617,7 +617,7 @@
     position: fixed;
     top: 14px;
     left: 14px;
-    z-index: 50;
+    z-index: 400; /* above sidebar (z-index 300) so X stays visible when open */
     width: 38px;
     height: 38px;
     background: rgba(8,8,8,0.65);
@@ -632,6 +632,9 @@
     transition: border-color 0.2s, background 0.2s;
   }
   #hamburger-btn:hover { background: rgba(200,255,0,0.1); border-color: var(--lime); }
+  /* Icon swap: show X when open */
+  #hamburger-btn.open .icon-menu  { display: none; }
+  #hamburger-btn.open .icon-close { display: block !important; }
 
   /* ── MOBILE SIDEBAR BACKDROP ── */
   #mobile-sidebar-backdrop {
@@ -663,11 +666,11 @@
     flex-direction: column;
     padding: 32px 24px;
     overflow-y: auto;
-    transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
   }
   #desktop-sidebar.open {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
   /* ── SIDEBAR CONTENT STYLES ── */
@@ -899,9 +902,12 @@
 </aside>
 
 <!-- Mobile hamburger -->
-<button id="hamburger-btn" type="button" aria-label="Open menu">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+<button id="hamburger-btn" type="button" aria-label="Open menu" aria-expanded="false">
+  <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
     <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+  <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" style="display:none">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
   </svg>
 </button>
 
@@ -1432,17 +1438,27 @@ function openSidebar() {
   desktopSidebar.classList.add('open');
   mobileSidebarBackdrop.classList.add('open');
   document.getElementById('feed').style.overflow = 'hidden';
-  if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'true');
+  if (hamburgerBtn) {
+    hamburgerBtn.classList.add('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    hamburgerBtn.setAttribute('aria-label', 'Close menu');
+  }
 }
 
 function closeSidebar() {
   desktopSidebar.classList.remove('open');
   mobileSidebarBackdrop.classList.remove('open');
   document.getElementById('feed').style.overflow = '';
-  if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+  if (hamburgerBtn) {
+    hamburgerBtn.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    hamburgerBtn.setAttribute('aria-label', 'Open menu');
+  }
 }
 
-if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+if (hamburgerBtn) hamburgerBtn.addEventListener('click', () => {
+  desktopSidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+});
 if (mobileSidebarBackdrop) mobileSidebarBackdrop.addEventListener('click', closeSidebar);
 </script>
 </body>
