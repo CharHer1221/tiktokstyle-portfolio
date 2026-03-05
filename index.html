@@ -16,6 +16,16 @@
     --muted: #555;
   }
 
+  /* ── LIGHT MODE ── */
+  body.light {
+    --black: #f0f0eb;
+    --dark: #ffffff;
+    --mid: #e0e0d8;
+    --white: #111111;
+    --muted: #888888;
+    --lime: #4d6b00;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
   html, body {
@@ -636,6 +646,38 @@
   #hamburger-btn.open .icon-menu  { display: none; }
   #hamburger-btn.open .icon-close { display: block !important; }
 
+  /* ── THEME TOGGLE BUTTON ── */
+  #theme-btn {
+    position: fixed;
+    top: 62px;
+    right: 16px;
+    z-index: 50;
+    width: 38px;
+    height: 38px;
+    background: rgba(8,8,8,0.65);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--white);
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  #theme-btn:hover { background: rgba(200,255,0,0.1); border-color: var(--lime); }
+  /* swap icons */
+  #theme-btn .icon-sun  { display: none; }
+  #theme-btn .icon-moon { display: block; }
+  body.light #theme-btn .icon-sun  { display: block; }
+  body.light #theme-btn .icon-moon { display: none; }
+  /* light mode: button background adjusts */
+  body.light #theme-btn {
+    background: rgba(240,240,235,0.85);
+    border-color: rgba(0,0,0,0.15);
+    color: #111;
+  }
+
   /* ── MOBILE SIDEBAR BACKDROP ── */
   #mobile-sidebar-backdrop {
     position: fixed;
@@ -719,7 +761,7 @@
     gap: 10px;
     font-family: 'DM Mono', monospace;
     font-size: 11px;
-    color: rgba(240,240,240,0.6);
+    color: rgba(240,240,240,0.88);
     text-decoration: none;
     padding: 8px 10px;
     border-radius: 8px;
@@ -730,7 +772,7 @@
     color: var(--lime);
     background: rgba(200,255,0,0.07);
   }
-  .sidebar-link svg { flex-shrink: 0; opacity: 0.7; }
+  .sidebar-link svg { flex-shrink: 0; opacity: 0.88; }
   .sidebar-link:hover svg { opacity: 1; }
 
   /* ════════════════════════════════════════════
@@ -807,11 +849,17 @@
       width: 390px;
     }
 
-    /* Fill card frame with media on desktop */
-    .carousel-slide-image .card-media,
+    /* Maintain aspect ratios on desktop (4:5 images, 9:16 videos) */
+    .carousel-slide-image .card-media {
+      width: min(390px, calc((100vh - 48px) * 4 / 5));
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
     .carousel-slide-video .card-media {
-      width: 100%;
-      height: 100%;
+      width: min(390px, calc((100vh - 48px) * 9 / 16));
+      height: auto;
+      aspect-ratio: 9 / 16;
       object-fit: cover;
     }
 
@@ -910,6 +958,20 @@
   </svg>
   <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" style="display:none">
     <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</button>
+
+<!-- Theme toggle -->
+<button id="theme-btn" type="button" aria-label="Toggle light/dark mode">
+  <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+  <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
   </svg>
 </button>
 
@@ -1462,6 +1524,18 @@ if (hamburgerBtn) hamburgerBtn.addEventListener('click', () => {
   desktopSidebar.classList.contains('open') ? closeSidebar() : openSidebar();
 });
 if (mobileSidebarBackdrop) mobileSidebarBackdrop.addEventListener('click', closeSidebar);
+
+// ── THEME TOGGLE ──
+(function () {
+  if (localStorage.getItem('pf_theme') === 'light') document.body.classList.add('light');
+  const themeBtn = document.getElementById('theme-btn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('pf_theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+})();
 </script>
 </body>
 </html>
