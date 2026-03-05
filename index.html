@@ -47,6 +47,7 @@
   /* ── FEED ── */
   #feed {
     height: 100vh;
+    height: 100dvh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scrollbar-width: none;
@@ -58,6 +59,7 @@
   .card {
     position: relative;
     height: 100vh;
+    height: 100dvh;
     width: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -125,26 +127,20 @@
     object-fit: cover;
   }
 
-  /* Images: Instagram 4:5 (1080×1350) */
-  .carousel-slide-image .card-media {
-    width: min(100vw, calc(100vh * 4 / 5));
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-  }
-
-  /* Videos: 9:16 (1080×1920) */
+  /* Mobile: fill the full card exactly like TikTok — crop to fit */
+  .carousel-slide-image .card-media,
   .carousel-slide-video .card-media {
-    width: min(100vw, calc(100vh * 9 / 16));
-    aspect-ratio: 9 / 16;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
   /* ── CAROUSEL DOTS ── */
   .carousel-dots {
     position: absolute;
-    top: min(calc(50% + min(62.5vw, 50vh) + 10px), calc(100% - 130px));
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: calc(160px + env(safe-area-inset-bottom, 0px));
+    left: 16px;
+    transform: none;
     display: flex;
     gap: 5px;
     z-index: 10;
@@ -231,7 +227,7 @@
     position: relative;
     z-index: 10;
     width: 100%;
-    padding: 0 72px 36px 16px;
+    padding: 0 72px calc(36px + env(safe-area-inset-bottom, 0px)) 16px;
   }
 
   /* ── CAPTION ── */
@@ -303,7 +299,7 @@
   .actions {
     position: absolute;
     right: 12px;
-    bottom: calc(max(16px, 50vh - 62.5vw));
+    bottom: calc(100px + env(safe-area-inset-bottom, 0px));
     z-index: 20;
     display: flex;
     flex-direction: column;
