@@ -189,8 +189,8 @@
     transition: opacity 0.2s;
     pointer-events: none;
   }
-  .card:hover .play-pause-overlay { opacity: 1; pointer-events: all; }
-  .card.paused .play-pause-overlay { opacity: 1; pointer-events: all; }
+  .card:hover .play-pause-overlay { opacity: 1; pointer-events: auto; }
+  .card.paused .play-pause-overlay { opacity: 1; pointer-events: auto; }
   .card:not(.has-video) .play-pause-overlay { display: none; }
 
   .play-pause-btn {
@@ -600,7 +600,7 @@
     z-index: 250; opacity: 0; pointer-events: none;
     transition: opacity 0.3s;
   }
-  #backdrop.show { opacity: 1; pointer-events: all; }
+  #backdrop.show { opacity: 1; pointer-events: auto; }
 
   /* ── CARD PLACEHOLDER (no media) ── */
   .card-placeholder {
@@ -646,7 +646,7 @@
   }
   #mobile-sidebar-backdrop.open {
     opacity: 1;
-    pointer-events: all;
+    pointer-events: auto;
   }
 
   /* ── SIDEBAR (shared mobile slide-in + desktop fixed) ── */
@@ -740,6 +740,7 @@
     }
 
     /* ── LEFT SIDEBAR ── */
+    /* Sidebar width: 240px on desktop. #feed margin-left MUST match this value. */
     #desktop-sidebar {
       display: flex;
       flex-direction: column;
@@ -758,6 +759,7 @@
     }
 
     /* ── FEED (center column) ── */
+    /* margin-left MUST match #desktop-sidebar width above */
     #feed {
       margin-left: 240px;
       flex: 1;
@@ -1400,11 +1402,15 @@ const desktopSidebar = document.getElementById('desktop-sidebar');
 function openSidebar() {
   desktopSidebar.classList.add('open');
   mobileSidebarBackdrop.classList.add('open');
+  document.getElementById('feed').style.overflow = 'hidden';
+  if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'true');
 }
 
 function closeSidebar() {
   desktopSidebar.classList.remove('open');
   mobileSidebarBackdrop.classList.remove('open');
+  document.getElementById('feed').style.overflow = '';
+  if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
 }
 
 if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
