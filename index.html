@@ -841,6 +841,31 @@
     .card-bottom {
       padding: 0 16px 36px 16px;
     }
+
+  /* ── COMMENT DRAWER → right-side panel on desktop ── */
+  #comment-drawer {
+    top: 0;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    width: 380px;
+    height: 100vh;
+    border-top: none;
+    border-left: 1px solid rgba(200,255,0,0.15);
+    border-radius: 0;
+    transform: translateX(100%);
+  }
+  #comment-drawer.open {
+    transform: translateX(0);
+  }
+
+  /* Hide the drag handle on desktop */
+  .drawer-handle { display: none; }
+
+  /* Lighter backdrop on desktop */
+  #backdrop {
+    background: rgba(0,0,0,0.3);
+  }
   }
 </style>
 </head>
@@ -1271,6 +1296,7 @@ const commentInput = document.getElementById('comment-input');
 
 function openComments(id) {
   state.activeCommentCard = id;
+  document.querySelector('.drawer-header span').textContent = `COMMENTS  ${(state.commentsByCard[id] || []).length}`;
   renderComments(id);
   drawer.classList.add('open');
   backdrop.classList.add('show');
@@ -1325,6 +1351,9 @@ commentsList.addEventListener('click', e => {
 
 function renderComments(id) {
   const comments = state.commentsByCard[id];
+  // Refresh header count
+  const drawerHeader = document.querySelector('.drawer-header span');
+  if (drawerHeader) drawerHeader.textContent = `COMMENTS  ${comments.length}`;
   if (!comments.length) {
     commentsList.innerHTML = `<div style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.06em;text-align:center;padding:40px 0">no comments yet.<br>be the first.</div>`;
     return;
