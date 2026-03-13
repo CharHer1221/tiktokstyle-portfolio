@@ -101,7 +101,7 @@ const PROJECTS = [
   {
     id: 12,
     title: "DESIGNER POV",
-    tags: ["Opinion Series", "Design Critique", "Personal Note"],
+    tags: ["Opinion Series", "Personal Note"],
     caption: "This is what bothers me right now.",
     url: null,
     media: ["media/mylist/1.png", "media/mylist/2.png", "media/mylist/3.png", "media/mylist/4.png", "media/mylist/5.png", "media/mylist/6.png"]
