@@ -99,6 +99,14 @@ const PROJECTS = [
     media: "media/codetoportalbar.MP4"
   },
   {
+    id: 12,
+    title: "DESIGNER POV",
+    tags: ["Opinion Series", "Design Critique", "Personal Note"],
+    caption: "This is what bothers me right now.",
+    url: null,
+    media: ["media/mylist/1.png", "media/mylist/2.png", "media/mylist/3.png", "media/mylist/4.png", "media/mylist/5.png", "media/mylist/6.png"]
+  },
+  {
     id: 11,
     title: "BAD BUN",
     tags: ["Self-initiated", "Brand Identity", "2026"],
