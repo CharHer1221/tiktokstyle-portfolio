@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --lime: #C8FF00;
+    --lime: #333333;
     --black: #080808;
     --dark: #111111;
     --mid: #1a1a1a;
@@ -25,12 +25,12 @@
     --mid: #e0e0d8;
     --white: #111111;
     --muted: #888888;
-    --lime: #4d6b00;
+    --lime: #333333;
   }
   /* Card overlay text always stays light — it sits on dark media/gradient */
   body.light .caption-title  { color: #f0f0f0; }
-  body.light .caption-handle { color: #C8FF00; }
-  body.light .caption-tag:first-child { color: #C8FF00; }
+  body.light .caption-handle { color: rgba(240,240,240,0.85); }
+  body.light .caption-tag:first-child { color: rgba(240,240,240,0.75); }
   /* Sidebar: swap hardcoded-white elements to dark */
   body.light .sidebar-link    { color: rgba(17,17,17,0.8); }
   body.light .sidebar-divider { background: rgba(0,0,0,0.12); }
@@ -190,7 +190,7 @@
     backdrop-filter: blur(10px);
     transition: border-color 0.2s, background 0.2s, transform 0.15s;
   }
-  .mute-btn:hover { background: rgba(200,255,0,0.12); transform: scale(1.05); }
+  .mute-btn:hover { background: rgba(0,0,0,0.07); transform: scale(1.05); }
   .mute-btn:active { transform: scale(0.9); }
   .card.has-video .mute-btn { display: flex; }
   .card.has-video.unmuted .mute-btn { border-color: rgba(255,255,255,0.2); }
@@ -224,7 +224,7 @@
     backdrop-filter: blur(12px);
     transition: transform 0.15s, background 0.15s;
   }
-  .play-pause-btn:hover { background: rgba(200,255,0,0.15); transform: scale(1.08); }
+  .play-pause-btn:hover { background: rgba(0,0,0,0.09); transform: scale(1.08); }
   .play-pause-btn:active { transform: scale(0.92); }
 
   /* ── CARD BOTTOM ── */
@@ -283,8 +283,8 @@
 
   .caption-tag:first-child {
     color: var(--lime);
-    border-color: rgba(200,255,0,0.3);
-    background: rgba(200,255,0,0.07);
+    border-color: rgba(0,0,0,0.18);
+    background: rgba(0,0,0,0.04);
   }
 
   .caption-hook {
@@ -469,8 +469,8 @@
     transition: opacity 0.5s, transform 0.5s;
   }
   @keyframes pulse-border {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(200,255,0,0.3); }
-    50% { box-shadow: 0 0 0 10px rgba(200,255,0,0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,0,0,0.18); }
+    50% { box-shadow: 0 0 0 10px rgba(0,0,0,0); }
   }
   #sound-banner span {
     font-family: 'DM Mono', monospace;
@@ -506,7 +506,7 @@
     bottom: 0; left: 0; right: 0;
     height: 60vh;
     background: var(--dark);
-    border-top: 1px solid rgba(200,255,0,0.2);
+    border-top: 1px solid rgba(0,0,0,0.12);
     border-radius: 20px 20px 0 0;
     z-index: 300;
     transform: translateY(100%);
@@ -649,7 +649,7 @@
     backdrop-filter: blur(10px);
     transition: border-color 0.2s, background 0.2s;
   }
-  #hamburger-btn:hover { background: rgba(200,255,0,0.1); border-color: var(--lime); }
+  #hamburger-btn:hover { background: rgba(0,0,0,0.06); border-color: var(--lime); }
   /* Icon swap: show X when open */
   #hamburger-btn.open .icon-menu  { display: none; }
   #hamburger-btn.open .icon-close { display: block !important; }
@@ -746,7 +746,7 @@
   }
   .sidebar-link:hover {
     color: var(--lime);
-    background: rgba(200,255,0,0.07);
+    background: rgba(0,0,0,0.04);
   }
   .sidebar-link svg { flex-shrink: 0; opacity: 0.88; }
   .sidebar-link:hover svg { opacity: 1; }
@@ -893,7 +893,7 @@
     width: 380px;
     height: 100vh;
     border-top: none;
-    border-left: 1px solid rgba(200,255,0,0.15);
+    border-left: 1px solid rgba(0,0,0,0.09);
     border-radius: 0;
     transform: translateX(100%);
   }
@@ -957,7 +957,7 @@
 <div id="dots"></div>
 
 <div id="scroll-hint">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8FF00" stroke-width="2">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="2">
     <path d="M12 5v14M5 12l7 7 7-7"/>
   </svg>
   <span>swipe</span>
@@ -966,7 +966,7 @@
 <div id="toast"></div>
 
 <div id="sound-banner">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8FF00" stroke-width="2">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="2">
     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
     <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
   </svg>
@@ -1096,7 +1096,7 @@ PROJECTS.forEach((p, i) => {
 
       ${hasVid ? `
       <button class="mute-btn" data-id="${p.id}">
-        <svg class="icon-muted" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8FF00" stroke-width="2">
+        <svg class="icon-muted" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="2">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
           <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
         </svg>
