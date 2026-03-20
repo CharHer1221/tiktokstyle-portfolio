@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="media/cperiod256.png">
 <link rel="apple-touch-icon" href="media/cperiod256.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --lime: #333333;
@@ -41,7 +41,7 @@
     height: 100%;
     background: var(--black);
     color: var(--white);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     overflow: hidden;
     overscroll-behavior: none;
   }
@@ -242,7 +242,7 @@
   }
 
   .caption-handle {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: var(--lime);
     letter-spacing: 0.1em;
@@ -269,7 +269,7 @@
   }
 
   .caption-tag {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 9px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -288,7 +288,7 @@
   }
 
   .caption-hook {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
     color: rgba(240,240,240,0.75);
     margin-top: 10px;
@@ -383,7 +383,7 @@
   }
 
   .action-count {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     color: rgba(240,240,240,0.7);
     letter-spacing: 0.05em;
@@ -434,7 +434,7 @@
     50% { transform: translateX(-50%) translateY(-6px); }
   }
   #scroll-hint span {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 9px;
     letter-spacing: 0.12em;
     color: var(--lime);
@@ -473,7 +473,7 @@
     50% { box-shadow: 0 0 0 10px rgba(0,0,0,0); }
   }
   #sound-banner span {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     letter-spacing: 0.1em;
     color: var(--lime);
@@ -488,7 +488,7 @@
     transform: translateX(-50%) translateY(-60px);
     background: var(--lime);
     color: var(--black);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     letter-spacing: 0.08em;
     padding: 10px 20px;
@@ -552,16 +552,16 @@
     width: 32px; height: 32px; border-radius: 50%;
     background: var(--mid); flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
+    font-family: 'Inter', sans-serif; font-size: 10px; color: var(--muted);
     border: 1px solid rgba(255,255,255,0.06);
   }
   .comment-body { flex: 1; }
   .comment-name {
-    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-family: 'Inter', sans-serif; font-size: 11px;
     color: var(--lime); margin-bottom: 3px; letter-spacing: 0.05em;
   }
   .comment-text {
-    font-family: 'DM Mono', monospace; font-size: 13px;
+    font-family: 'Inter', sans-serif; font-size: 13px;
     color: rgba(240,240,240,0.8); line-height: 1.5;
   }
   .comment-input-row {
@@ -588,7 +588,7 @@
     border-radius: 20px;
     padding: 10px 16px;
     color: var(--white);
-    font-family: 'DM Mono', monospace; font-size: 13px;
+    font-family: 'Inter', sans-serif; font-size: 13px;
     outline: none; transition: border-color 0.2s;
   }
   #comment-name {
@@ -626,7 +626,7 @@
     display: flex; align-items: center; justify-content: center; z-index: 0;
   }
   .card-placeholder span {
-    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-family: 'Inter', sans-serif; font-size: 11px;
     color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
   }
 
@@ -712,7 +712,7 @@
     text-transform: lowercase;
   }
   .sidebar-tagline {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     color: var(--lime);
     letter-spacing: 0.08em;
@@ -735,7 +735,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: rgba(240,240,240,0.88);
     text-decoration: none;
@@ -1422,7 +1422,7 @@ function renderComments(id) {
   const drawerHeader = document.querySelector('.drawer-header span');
   if (drawerHeader) drawerHeader.textContent = `COMMENTS  ${comments.length}`;
   if (!comments.length) {
-    commentsList.innerHTML = `<div style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.06em;text-align:center;padding:40px 0">no comments yet.<br>be the first.</div>`;
+    commentsList.innerHTML = `<div style="color:var(--muted);font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.06em;text-align:center;padding:40px 0">no comments yet.<br>be the first.</div>`;
     return;
   }
   commentsList.innerHTML = comments.map((c, i) => `
