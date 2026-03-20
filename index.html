@@ -120,6 +120,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #000;
   }
 
   /* ── MEDIA (image or video) ── */
@@ -1036,6 +1037,12 @@ PROJECTS.forEach(p => {
   state.carouselIndex[p.id]  = 0;
 });
 
+// ── SHUFFLE PROJECT ORDER ──
+for (let i = PROJECTS.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [PROJECTS[i], PROJECTS[j]] = [PROJECTS[j], PROJECTS[i]];
+}
+
 // ── BUILD FEED ──
 const feed = document.getElementById('feed');
 const dotsEl = document.getElementById('dots');
@@ -1441,25 +1448,6 @@ function renderComments(id) {
 }
 
 // ── CLICK-TO-ADVANCE CAROUSEL (desktop) ──
-document.addEventListener('click', e => {
-  // Only on non-touch devices
-  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  const slide = e.target.closest('.carousel-slide');
-  if (!slide) return;
-  // Don't trigger if clicking a button inside the slide
-  if (e.target.closest('button, a')) return;
-  const carousel = slide.closest('.carousel');
-  if (!carousel || parseInt(carousel.dataset.count) <= 1) return;
-  const id = parseInt(carousel.dataset.id);
-  const count = parseInt(carousel.dataset.count);
-  const rect = slide.getBoundingClientRect();
-  const dir = e.clientX < rect.left + rect.width / 2 ? -1 : 1;
-  const newIdx = Math.max(0, Math.min(state.carouselIndex[id] + dir, count - 1));
-  state.carouselIndex[id] = newIdx;
-  const pct = newIdx * (100 / count);
-  carousel.style.transform = `translateX(-${pct}%)`;
-  document.querySelectorAll(`.carousel-dot[data-card="${id}"]`).forEach((d, i) => d.classList.toggle('active', i === newIdx));
-});
 
 // ── KEYBOARD NAV ──
 document.addEventListener('keydown', e => {
