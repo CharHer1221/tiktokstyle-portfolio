@@ -114,4 +114,36 @@ const PROJECTS = [
     url: null,
     media: ["media/badbunpics/1.png", "media/badbunpics/2.png", "media/badbunpics/3.png", "media/badbunpics/4.png"]
   },
+  {
+    id: 13,
+    title: "EAT THE RICH",
+    tags: ["Brand Identity"],
+    caption: "Your brand can be political.",
+    url: null,
+    media: ["media/eatherich-carousel/1.png", "media/eatherich-carousel/2.png", "media/eatherich-carousel/3.png", "media/eatherich-carousel/4.png", "media/eatherich-carousel/5.png"]
+  },
+  {
+    id: 14,
+    title: "YOU SHOULDN'T DO THAT",
+    tags: ["Design Decisions"],
+    caption: "What couldn't you do at the table?",
+    url: "https://www.charlanne.work/works/gogiya",
+    media: ["media/gogiya-carousel/1.PNG", "media/gogiya-carousel/2.PNG", "media/gogiya-carousel/3.PNG", "media/gogiya-carousel/4.PNG", "media/gogiya-carousel/5.PNG", "media/gogiya-carousel/6.PNG"]
+  },
+  {
+    id: 15,
+    title: "OR WHAT?",
+    tags: ["UX/UI"],
+    caption: "Users don't want to feel stupid.",
+    url: null,
+    media: ["media/or-carousel/1.jpg", "media/or-carousel/2.jpg", "media/or-carousel/3.jpg", "media/or-carousel/4.jpg", "media/or-carousel/5.jpg"]
+  },
+  {
+    id: 16,
+    title: "ETHICAL RANT",
+    tags: ["Rant"],
+    caption: "It is not your free library.",
+    url: null,
+    media: "media/pintrestisnotyourlibrary.MOV"
+  },
 ];
