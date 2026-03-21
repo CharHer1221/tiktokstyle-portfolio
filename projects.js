@@ -67,6 +67,14 @@ const PROJECTS = [
     media: ["media/uplnanula/1.png", "media/uplnanula/2.png", "media/uplnanula/3.png"]
   },
   {
+    id: 6,
+    title: "FOCAL POINT",
+    tags: ["Photography community", "Zine Inspired", "2025"],
+    caption: "Taking the idea of a zine and making it into a community.",
+    url: null,
+    media: "media/focalpoint.MP4"
+  },
+  {
     id: 9,
     title: "I ONLY WANT TO GO BACK FOR ONE REASON",
     tags: ["Personal Note", "Funny"],
@@ -129,13 +137,5 @@ const PROJECTS = [
     caption: "Campaign work that started with a feeling, not a brief.",
     url: null,
     media: "media/make.mp4"
-  },
-  {
-    id: 6,
-    title: "FOCAL POINT",
-    tags: ["Photography community", "Zine Inspired", "2025"],
-    caption: "Taking the idea of a zine and making it into a community.",
-    url: null,
-    media: "media/focalpoint.MP4"
   },
 ];
