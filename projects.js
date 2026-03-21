@@ -19,12 +19,36 @@
 
 const PROJECTS = [
   {
-    id: 1,
-    title: "BAD BUN",
-    tags: ["Self-initiated", "Brand Identity", "2026"],
-    caption: "A burger brand built on chaos, craving, and zero apologies.",
+    id: 15,
+    title: "OR WHAT?",
+    tags: ["UX/UI"],
+    caption: "Users don't want to feel stupid.",
     url: null,
-    media: "media/badbun.MP4"
+    media: ["media/or-carousel/1.jpg", "media/or-carousel/2.jpg", "media/or-carousel/3.jpg", "media/or-carousel/4.jpg", "media/or-carousel/5.jpg"]
+  },
+  {
+    id: 12,
+    title: "DESIGNER POV",
+    tags: ["Opinion Series", "Personal Note"],
+    caption: "This is what bothers me right now.",
+    url: null,
+    media: ["media/mylist/1.png", "media/mylist/2.png", "media/mylist/3.png", "media/mylist/4.png", "media/mylist/5.png", "media/mylist/6.png"]
+  },
+  {
+    id: 16,
+    title: "ETHICAL RANT",
+    tags: ["Rant"],
+    caption: "It is not your free library.",
+    url: null,
+    media: "media/pintrestisnotyourlibrary.MOV"
+  },
+  {
+    id: 13,
+    title: "EAT THE RICH",
+    tags: ["Brand Identity"],
+    caption: "Your brand can be political.",
+    url: null,
+    media: ["media/eatherich-carousel/1.png", "media/eatherich-carousel/2.png", "media/eatherich-carousel/3.png", "media/eatherich-carousel/4.png", "media/eatherich-carousel/5.png"]
   },
   {
     id: 2,
@@ -43,6 +67,38 @@ const PROJECTS = [
     media: ["media/uplnanula/1.png", "media/uplnanula/2.png", "media/uplnanula/3.png"]
   },
   {
+    id: 9,
+    title: "I ONLY WANT TO GO BACK FOR ONE REASON",
+    tags: ["Personal Note", "Funny"],
+    caption: "I don't regret anything, but I wish I could go back for one reason.",
+    url: null,
+    media: "media/2012club.MP4"
+  },
+  {
+    id: 1,
+    title: "BAD BUN",
+    tags: ["Self-initiated", "Brand Identity", "2026"],
+    caption: "A burger brand built on chaos, craving, and zero apologies.",
+    url: null,
+    media: "media/badbun.MP4"
+  },
+  {
+    id: 14,
+    title: "YOU SHOULDN'T DO THAT",
+    tags: ["Design Decisions"],
+    caption: "What couldn't you do at the table?",
+    url: "https://www.charlanne.work/works/gogiya",
+    media: ["media/gogiya-carousel/1.PNG", "media/gogiya-carousel/2.PNG", "media/gogiya-carousel/3.PNG", "media/gogiya-carousel/4.PNG", "media/gogiya-carousel/5.PNG", "media/gogiya-carousel/6.PNG"]
+  },
+  {
+    id: 11,
+    title: "BAD BUN",
+    tags: ["Self-initiated", "Brand Identity", "2026"],
+    caption: "A burger brand built on chaos, craving, and zero apologies.",
+    url: null,
+    media: ["media/badbunpics/1.png", "media/badbunpics/2.png", "media/badbunpics/3.png", "media/badbunpics/4.png"]
+  },
+  {
     id: 4,
     title: "UNETHICAL UX",
     tags: ["Unethical Design", "Dark Patterns", "UX"],
@@ -57,14 +113,6 @@ const PROJECTS = [
     caption: "If 14 year old me saw me now, she would be proud.",
     url: null,
     media: "media/14yearsoldtonow.MP4"
-  },
-  {
-    id: 6,
-    title: "FOCAL POINT",
-    tags: ["Photography community", "Zine Inspired", "2025"],
-    caption: "Taking the idea of a zine and making it into a community.",
-    url: null,
-    media: "media/focalpoint.MP4"
   },
   {
     id: 7,
@@ -83,67 +131,11 @@ const PROJECTS = [
     media: "media/make.mp4"
   },
   {
-    id: 9,
-    title: "I ONLY WANT TO GO BACK FOR ONE REASON",
-    tags: ["Personal Note", "Funny"],
-    caption: "I don't regret anything, but I wish I could go back for one reason.",
+    id: 6,
+    title: "FOCAL POINT",
+    tags: ["Photography community", "Zine Inspired", "2025"],
+    caption: "Taking the idea of a zine and making it into a community.",
     url: null,
-    media: "media/2012club.MP4"
-  },
-  {
-    id: 10,
-    title: "CODE TO VISUAL",
-    tags: ["HTML/CSS", "Web Development"],
-    caption: "Playing with CSS for a logo design.",
-    url: null,
-    media: "media/codetoportalbar.MP4"
-  },
-  {
-    id: 12,
-    title: "DESIGNER POV",
-    tags: ["Opinion Series", "Personal Note"],
-    caption: "This is what bothers me right now.",
-    url: null,
-    media: ["media/mylist/1.png", "media/mylist/2.png", "media/mylist/3.png", "media/mylist/4.png", "media/mylist/5.png", "media/mylist/6.png"]
-  },
-  {
-    id: 11,
-    title: "BAD BUN",
-    tags: ["Self-initiated", "Brand Identity", "2026"],
-    caption: "A burger brand built on chaos, craving, and zero apologies.",
-    url: null,
-    media: ["media/badbunpics/1.png", "media/badbunpics/2.png", "media/badbunpics/3.png", "media/badbunpics/4.png"]
-  },
-  {
-    id: 13,
-    title: "EAT THE RICH",
-    tags: ["Brand Identity"],
-    caption: "Your brand can be political.",
-    url: null,
-    media: ["media/eatherich-carousel/1.png", "media/eatherich-carousel/2.png", "media/eatherich-carousel/3.png", "media/eatherich-carousel/4.png", "media/eatherich-carousel/5.png"]
-  },
-  {
-    id: 14,
-    title: "YOU SHOULDN'T DO THAT",
-    tags: ["Design Decisions"],
-    caption: "What couldn't you do at the table?",
-    url: "https://www.charlanne.work/works/gogiya",
-    media: ["media/gogiya-carousel/1.PNG", "media/gogiya-carousel/2.PNG", "media/gogiya-carousel/3.PNG", "media/gogiya-carousel/4.PNG", "media/gogiya-carousel/5.PNG", "media/gogiya-carousel/6.PNG"]
-  },
-  {
-    id: 15,
-    title: "OR WHAT?",
-    tags: ["UX/UI"],
-    caption: "Users don't want to feel stupid.",
-    url: null,
-    media: ["media/or-carousel/1.jpg", "media/or-carousel/2.jpg", "media/or-carousel/3.jpg", "media/or-carousel/4.jpg", "media/or-carousel/5.jpg"]
-  },
-  {
-    id: 16,
-    title: "ETHICAL RANT",
-    tags: ["Rant"],
-    caption: "It is not your free library.",
-    url: null,
-    media: "media/pintrestisnotyourlibrary.MOV"
+    media: "media/focalpoint.MP4"
   },
 ];
