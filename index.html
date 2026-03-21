@@ -130,8 +130,17 @@
     object-fit: cover;
   }
 
-  /* Mobile: fill the full card exactly like TikTok — crop to fit */
-  .carousel-slide-image .card-media,
+  /* Mobile: images — Instagram 4:5 portrait, centered with black letterbox */
+  .carousel-slide-image .card-media {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  /* Mobile: videos — full-bleed TikTok style */
   .carousel-slide-video .card-media {
     position: absolute;
     inset: 0;
