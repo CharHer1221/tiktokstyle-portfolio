@@ -177,6 +177,11 @@
   /* Only show dots if carousel has multiple slides */
   .carousel[data-count="1"] ~ .carousel-dots { display: none; }
 
+  /* Image carousels: anchor dots to the bottom edge of the 4:5 image */
+  .carousel-dots--image {
+    bottom: calc((100vh - 100vw * 1.25) / 2 + 10px);
+  }
+
 /* Desktop: show pointer cursor on carousel slides */
   @media (hover: hover) and (pointer: fine) {
     .carousel[data-count]:not([data-count="1"]) .carousel-slide { cursor: pointer; }
@@ -1097,7 +1102,7 @@ PROJECTS.forEach((p, i) => {
         ${slides}
       </div>
       ${isCarousel ? `
-        <div class="carousel-dots">
+        <div class="carousel-dots${!hasVid ? ' carousel-dots--image' : ''}">
           ${mediaList.map((_, di) => `<div class="carousel-dot ${di === 0 ? 'active' : ''}" data-card="${p.id}" data-dot="${di}"></div>`).join('')}
         </div>
 ` : ''}
